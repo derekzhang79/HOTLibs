@@ -27,6 +27,7 @@
 		E90B0E8D165EE507002350DC /* libHOTModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E90B0E8C165EE506002350DC /* libHOTModel.a */; };
 		E90B0E8E165EE8E6002350DC /* RemoteCall.m in Sources */ = {isa = PBXBuildFile; fileRef = E90B0E70165E06A6002350DC /* RemoteCall.m */; };
 		E90B0E8F165EE8E6002350DC /* Change.m in Sources */ = {isa = PBXBuildFile; fileRef = E90B0E74165E06CE002350DC /* Change.m */; };
+		E90B0E90165EEAFA002350DC /* HOTReplicatedModel.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E90B0E6B165E0686002350DC /* HOTReplicatedModel.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,6 +47,7 @@
 			dstPath = "include/${PRODUCT_NAME}";
 			dstSubfolderSpec = 16;
 			files = (
+				E90B0E90165EEAFA002350DC /* HOTReplicatedModel.h in CopyFiles */,
 				E90B0E45165E056A002350DC /* HOTSync.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
