@@ -7,16 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HOTModel.h"
 #import "utils.h"
 #import "RemoteCall.h"
 #import "Change.h"
-
-@protocol HOTSyncDelegate <NSObject>
-@required
-- (void) processSuccessful: (BOOL)success;
-@end
-
 
 @interface HOTSync : NSObject {
     NSString *_baseURL;
@@ -29,7 +22,7 @@
     bool _downloadingSnapshot; // Specifies the fact that a snapshot is being downloaded
     NSDate *_fullSyncDateDownstream;
     NSDate *_fullSyncDateUpstream;
-    CakeModelManager *_modelManager;
+    HOTModelManager *_modelManager;
 }
 
 @property (strong) NSString *baseURL;
@@ -37,4 +30,10 @@
 @property (strong) NSString *deviceId;
 @property (assign) int transactionId;
 
+@end
+
+
+@protocol HOTSyncDelegate <NSObject>
+@required
+- (void) processSuccessful: (BOOL)success;
 @end

@@ -11,7 +11,7 @@
 
 @implementation RemoteCall
 
--(id)initWithModelManager:(CakeModelManager *)modelMgr andSyncClinet:(HOTSync *)syncClient{
+-(id)initWithModelManager:(HOTModelManager *)modelMgr andSyncClinet:(HOTSync *)syncClient{
     self = [super initWithModelManager:modelMgr];
     if(self){
         // Initialization code here.

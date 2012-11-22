@@ -20,7 +20,7 @@
 
 -(id)initWithConfig:(NSDictionary *)config;
 -(HOTDatabase *)getDatabaseWithDatasource:(NSString *)datasource;
--(void)addDatasourceWithName:(NSString *)dataSourceName andConfig:(NSDictionary* )config;
+-(void)addDatasourceWithName:(NSString *)dataSourceName andConfig:(NSDictionary *)config;
 
 -(void)registerModel:(HOTModel *)model;
 -(HOTModel *)modelWithName:(NSString *)name;

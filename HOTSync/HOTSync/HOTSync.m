@@ -10,7 +10,7 @@
 
 @implementation HOTSync
 
--(id)initWithModelManager:(CakeModelManager *)modelMgr andDataSource:(NSString *)datasource andBaseURL:(NSString *)baseUrl andDeviceType:(NSString *)deviceType andDeviceId:(NSString *)deviceId{
+-(id)initWithModelManager:(HOTModelManager *)modelMgr andDataSource:(NSString *)datasource andBaseURL:(NSString *)baseUrl andDeviceType:(NSString *)deviceType andDeviceId:(NSString *)deviceId{
     self = [super init];
     if(self){
         _modelManager = modelMgr;
@@ -24,7 +24,7 @@
         NSDictionary *config = [[NSDictionary alloc] initWithObjectsAndKeys:
                                 path, @"Path",
                                 nil];
-        [_modelManager addDatasorceWithName:@"local" andConfig:config];
+        [_modelManager addDatasourceWithName:@"local" andConfig:config];
         // add the 2 datasource methods
         [_modelManager registerModel:[[RemoteCall alloc] initWithModelManager:modelMgr andSyncClinet:self]];
         [_modelManager registerModel:[[Change alloc] initWithModelManager:modelMgr andSyncClinet:self]];
@@ -87,7 +87,7 @@
  */
 -(void)downloadSnapshot:(NSDictionary *)data{
     // Need to alculate the time it takes to download the snapshot here
-    CakeDatabase *database = [_modelManager getDatabaseWithDatasource:_datasource];
+    HOTDatabase *database = [_modelManager getDatabaseWithDatasource:_datasource];
     NSString *snapshotFile = [data objectForKey:@"snapshot_file"];
     // download the snapshot file and save it to a temporary location
     NSData *snapshot = [NSData dataWithContentsOfURL:[NSURL URLWithString:snapshotFile]];
@@ -247,7 +247,7 @@
 -(BOOL)syncTransaction:(NSDictionary *)transaction{
     NSString *modelName = [transaction objectForKey:@"model_name"];
     NSString *action = [transaction objectForKey:@"action"];
-    CakeModel *model = [_modelManager modelWithName:modelName];
+    HOTModel *model = [_modelManager modelWithName:modelName];
     if([action isEqualToString:@"D"]){
         // delete the record
         // In this case data should hold the primary keys {ModelName:{PK1:V1, PK2:V2}}

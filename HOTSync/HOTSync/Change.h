@@ -8,9 +8,10 @@
 
 #import "HOTReplicatedModel.h"
 
-@interface Change : CakeModel
+@class HOTSync;
 
+@interface Change : HOTModel
 
--(id)initWithModelManager:(CakeModelManager *)modelMgr andSyncClinet:(HOTSync *)syncClient;
+-(id)initWithModelManager:(HOTModelManager *)modelMgr andSyncClinet:(HOTSync *)syncClient;
 
 @end

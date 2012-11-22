@@ -11,7 +11,6 @@
 		E90B0E45165E056A002350DC /* HOTSync.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E90B0E44165E056A002350DC /* HOTSync.h */; };
 		E90B0E47165E056A002350DC /* HOTSync.m in Sources */ = {isa = PBXBuildFile; fileRef = E90B0E46165E056A002350DC /* HOTSync.m */; };
 		E90B0E4F165E056A002350DC /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90B0E4E165E056A002350DC /* SenTestingKit.framework */; };
-		E90B0E51165E056A002350DC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90B0E50165E056A002350DC /* UIKit.framework */; };
 		E90B0E52165E056A002350DC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90B0E3F165E056A002350DC /* Foundation.framework */; };
 		E90B0E55165E056A002350DC /* libHOTSync.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E90B0E3C165E056A002350DC /* libHOTSync.a */; };
 		E90B0E5B165E056A002350DC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E90B0E59165E056A002350DC /* InfoPlist.strings */; };
@@ -20,11 +19,14 @@
 		E90B0E6A165E0647002350DC /* utils.m in Sources */ = {isa = PBXBuildFile; fileRef = E90B0E68165E0647002350DC /* utils.m */; };
 		E90B0E6D165E0687002350DC /* HOTReplicatedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E90B0E6C165E0687002350DC /* HOTReplicatedModel.m */; };
 		E90B0E6E165E0687002350DC /* HOTReplicatedModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E90B0E6C165E0687002350DC /* HOTReplicatedModel.m */; };
-		E90B0E71165E06A6002350DC /* RemoteCall.m in Sources */ = {isa = PBXBuildFile; fileRef = E90B0E70165E06A6002350DC /* RemoteCall.m */; };
 		E90B0E72165E06A6002350DC /* RemoteCall.m in Sources */ = {isa = PBXBuildFile; fileRef = E90B0E70165E06A6002350DC /* RemoteCall.m */; };
-		E90B0E75165E06CE002350DC /* Change.m in Sources */ = {isa = PBXBuildFile; fileRef = E90B0E74165E06CE002350DC /* Change.m */; };
 		E90B0E76165E06CE002350DC /* Change.m in Sources */ = {isa = PBXBuildFile; fileRef = E90B0E74165E06CE002350DC /* Change.m */; };
-		E90B0E78165E071E002350DC /* libHOTModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E90B0E77165E071E002350DC /* libHOTModel.a */; };
+		E90B0E85165EDAC3002350DC /* libOCMock.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E90B0E84165EDAC3002350DC /* libOCMock.a */; };
+		E90B0E87165EDD41002350DC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E90B0E86165EDD41002350DC /* libsqlite3.dylib */; };
+		E90B0E88165EDD4B002350DC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E90B0E86165EDD41002350DC /* libsqlite3.dylib */; };
+		E90B0E8D165EE507002350DC /* libHOTModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E90B0E8C165EE506002350DC /* libHOTModel.a */; };
+		E90B0E8E165EE8E6002350DC /* RemoteCall.m in Sources */ = {isa = PBXBuildFile; fileRef = E90B0E70165E06A6002350DC /* RemoteCall.m */; };
+		E90B0E8F165EE8E6002350DC /* Change.m in Sources */ = {isa = PBXBuildFile; fileRef = E90B0E74165E06CE002350DC /* Change.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,7 +60,6 @@
 		E90B0E46165E056A002350DC /* HOTSync.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HOTSync.m; sourceTree = "<group>"; };
 		E90B0E4D165E056A002350DC /* HOTSyncTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HOTSyncTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E90B0E4E165E056A002350DC /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		E90B0E50165E056A002350DC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		E90B0E58165E056A002350DC /* HOTSyncTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HOTSyncTests-Info.plist"; sourceTree = "<group>"; };
 		E90B0E5A165E056A002350DC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E90B0E5C165E056A002350DC /* HOTSyncTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HOTSyncTests.h; sourceTree = "<group>"; };
@@ -71,7 +72,9 @@
 		E90B0E70165E06A6002350DC /* RemoteCall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RemoteCall.m; sourceTree = "<group>"; };
 		E90B0E73165E06CE002350DC /* Change.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Change.h; sourceTree = "<group>"; };
 		E90B0E74165E06CE002350DC /* Change.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Change.m; sourceTree = "<group>"; };
-		E90B0E77165E071E002350DC /* libHOTModel.a */ = {isa = PBXFileReference; lastKnownFileType = file; name = libHOTModel.a; path = "../HOTModel/build/Release-iphoneos/libHOTModel.a"; sourceTree = "<group>"; };
+		E90B0E84165EDAC3002350DC /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = ../Externals/libOCMock.a; sourceTree = "<group>"; };
+		E90B0E86165EDD41002350DC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		E90B0E8C165EE506002350DC /* libHOTModel.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libHOTModel.a; path = "../Build/Products/Release-iphoneos/libHOTModel.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +82,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E90B0E78165E071E002350DC /* libHOTModel.a in Frameworks */,
+				E90B0E8D165EE507002350DC /* libHOTModel.a in Frameworks */,
+				E90B0E87165EDD41002350DC /* libsqlite3.dylib in Frameworks */,
 				E90B0E40165E056A002350DC /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -88,8 +92,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E90B0E88165EDD4B002350DC /* libsqlite3.dylib in Frameworks */,
+				E90B0E85165EDAC3002350DC /* libOCMock.a in Frameworks */,
 				E90B0E4F165E056A002350DC /* SenTestingKit.framework in Frameworks */,
-				E90B0E51165E056A002350DC /* UIKit.framework in Frameworks */,
 				E90B0E52165E056A002350DC /* Foundation.framework in Frameworks */,
 				E90B0E55165E056A002350DC /* libHOTSync.a in Frameworks */,
 			);
@@ -120,10 +125,11 @@
 		E90B0E3E165E056A002350DC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E90B0E8C165EE506002350DC /* libHOTModel.a */,
+				E90B0E86165EDD41002350DC /* libsqlite3.dylib */,
+				E90B0E84165EDAC3002350DC /* libOCMock.a */,
 				E90B0E3F165E056A002350DC /* Foundation.framework */,
 				E90B0E4E165E056A002350DC /* SenTestingKit.framework */,
-				E90B0E50165E056A002350DC /* UIKit.framework */,
-				E90B0E77165E071E002350DC /* libHOTModel.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -271,11 +277,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E90B0E8E165EE8E6002350DC /* RemoteCall.m in Sources */,
+				E90B0E8F165EE8E6002350DC /* Change.m in Sources */,
 				E90B0E47165E056A002350DC /* HOTSync.m in Sources */,
 				E90B0E69165E0647002350DC /* utils.m in Sources */,
 				E90B0E6D165E0687002350DC /* HOTReplicatedModel.m in Sources */,
-				E90B0E71165E06A6002350DC /* RemoteCall.m in Sources */,
-				E90B0E75165E06CE002350DC /* Change.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +340,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "${SRCROOT}/../HOTModel/HOTModel";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -354,6 +361,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = "${SRCROOT}/../HOTModel/HOTModel";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -366,6 +374,11 @@
 				DSTROOT = /tmp/HOTSync.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HOTSync/HOTSync-Prefix.pch";
+				HEADER_SEARCH_PATHS = "\"${SRCROOT}/../Build/Products/Release-iphoneos/include/HOTModel\"";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../Build/Products/Release-iphoneos\"",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -378,6 +391,11 @@
 				DSTROOT = /tmp/HOTSync.dst;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HOTSync/HOTSync-Prefix.pch";
+				HEADER_SEARCH_PATHS = "\"${SRCROOT}/../Build/Products/Release-iphoneos/include/HOTModel\"";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../Build/Products/Release-iphoneos\"",
+				);
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -393,7 +411,15 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HOTSync/HOTSync-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"${SRCROOT}/../Externals/**",
+					"${SRCROOT}/../HOTModel/HOTModel",
+				);
 				INFOPLIST_FILE = "HOTSyncTests/HOTSyncTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../Externals\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -408,7 +434,15 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "HOTSync/HOTSync-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"${SRCROOT}/../Externals/**",
+					"${SRCROOT}/../HOTModel/HOTModel",
+				);
 				INFOPLIST_FILE = "HOTSyncTests/HOTSyncTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../Externals\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -433,6 +467,7 @@
 				E90B0E63165E056A002350DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E90B0E64165E056A002350DC /* Build configuration list for PBXNativeTarget "HOTSyncTests" */ = {
 			isa = XCConfigurationList;
@@ -441,6 +476,7 @@
 				E90B0E66165E056A002350DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

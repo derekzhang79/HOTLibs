@@ -7,15 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "HOTModel.h"
 #import "HOTSync.h"
 #import "utils.h"
 
-@interface HOTReplicatedModel : CakeModel{
+@class HOTSync;
+
+@interface HOTReplicatedModel : HOTModel{
     HOTSync *_syncClient;
 }
 
--(id)initWithModelManager:(CakeModelManager *)modelMgr andSyncClinet:(HOTSync *)syncClient;
+-(id)initWithModelManager:(HOTModelManager *)modelMgr andSyncClinet:(HOTSync *)syncClient;
 -(BOOL)saveLocalWithData:(NSDictionary *)data;
 -(BOOL)deleteLocalWithQueryData:(NSDictionary *)queryData;
 

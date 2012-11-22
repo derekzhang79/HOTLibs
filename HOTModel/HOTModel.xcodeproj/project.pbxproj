@@ -11,7 +11,6 @@
 		E90B0E00165E01AF002350DC /* HOTModel.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E90B0DFF165E01AF002350DC /* HOTModel.h */; };
 		E90B0E02165E01AF002350DC /* HOTModel.m in Sources */ = {isa = PBXBuildFile; fileRef = E90B0E01165E01AF002350DC /* HOTModel.m */; };
 		E90B0E0A165E01AF002350DC /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90B0E09165E01AF002350DC /* SenTestingKit.framework */; };
-		E90B0E0C165E01AF002350DC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90B0E0B165E01AF002350DC /* UIKit.framework */; };
 		E90B0E0D165E01AF002350DC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90B0DFA165E01AF002350DC /* Foundation.framework */; };
 		E90B0E10165E01AF002350DC /* libHOTModel.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E90B0DF7165E01AF002350DC /* libHOTModel.a */; };
 		E90B0E16165E01AF002350DC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E90B0E14165E01AF002350DC /* InfoPlist.strings */; };
@@ -25,6 +24,9 @@
 		E90B0E30165E03DA002350DC /* HOTInflectorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E90B0E2F165E03DA002350DC /* HOTInflectorTests.m */; };
 		E90B0E80165E21B7002350DC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E90B0E7F165E21B7002350DC /* libsqlite3.dylib */; };
 		E90B0E82165E223E002350DC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E90B0E7F165E21B7002350DC /* libsqlite3.dylib */; };
+		E90B0E89165EE4D0002350DC /* HOTInflector.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E90B0E22165E01E6002350DC /* HOTInflector.h */; };
+		E90B0E8A165EE4D0002350DC /* HOTDatabase.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E90B0E26165E024A002350DC /* HOTDatabase.h */; };
+		E90B0E8B165EE4D0002350DC /* HOTModelManager.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E90B0E2A165E029D002350DC /* HOTModelManager.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,9 @@
 			dstPath = "include/${PRODUCT_NAME}";
 			dstSubfolderSpec = 16;
 			files = (
+				E90B0E89165EE4D0002350DC /* HOTInflector.h in CopyFiles */,
+				E90B0E8A165EE4D0002350DC /* HOTDatabase.h in CopyFiles */,
+				E90B0E8B165EE4D0002350DC /* HOTModelManager.h in CopyFiles */,
 				E90B0E00165E01AF002350DC /* HOTModel.h in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -58,7 +63,6 @@
 		E90B0E01165E01AF002350DC /* HOTModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HOTModel.m; sourceTree = "<group>"; };
 		E90B0E08165E01AF002350DC /* HOTModelTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HOTModelTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E90B0E09165E01AF002350DC /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		E90B0E0B165E01AF002350DC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		E90B0E13165E01AF002350DC /* HOTModelTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "HOTModelTests-Info.plist"; sourceTree = "<group>"; };
 		E90B0E15165E01AF002350DC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E90B0E17165E01AF002350DC /* HOTModelTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HOTModelTests.h; sourceTree = "<group>"; };
@@ -90,7 +94,6 @@
 			files = (
 				E90B0E82165E223E002350DC /* libsqlite3.dylib in Frameworks */,
 				E90B0E0A165E01AF002350DC /* SenTestingKit.framework in Frameworks */,
-				E90B0E0C165E01AF002350DC /* UIKit.framework in Frameworks */,
 				E90B0E0D165E01AF002350DC /* Foundation.framework in Frameworks */,
 				E90B0E10165E01AF002350DC /* libHOTModel.a in Frameworks */,
 			);
@@ -124,7 +127,6 @@
 				E90B0E7F165E21B7002350DC /* libsqlite3.dylib */,
 				E90B0DFA165E01AF002350DC /* Foundation.framework */,
 				E90B0E09165E01AF002350DC /* SenTestingKit.framework */,
-				E90B0E0B165E01AF002350DC /* UIKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
