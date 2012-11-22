@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'HOTSync' target in the 'HOTSync' project
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+#endif
