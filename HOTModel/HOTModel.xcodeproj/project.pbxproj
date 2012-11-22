@@ -23,6 +23,8 @@
 		E90B0E2C165E029D002350DC /* HOTModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E90B0E2B165E029D002350DC /* HOTModelManager.m */; };
 		E90B0E2D165E029D002350DC /* HOTModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E90B0E2B165E029D002350DC /* HOTModelManager.m */; };
 		E90B0E30165E03DA002350DC /* HOTInflectorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E90B0E2F165E03DA002350DC /* HOTInflectorTests.m */; };
+		E90B0E80165E21B7002350DC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E90B0E7F165E21B7002350DC /* libsqlite3.dylib */; };
+		E90B0E82165E223E002350DC /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = E90B0E7F165E21B7002350DC /* libsqlite3.dylib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,7 @@
 		E90B0E2B165E029D002350DC /* HOTModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HOTModelManager.m; sourceTree = "<group>"; };
 		E90B0E2E165E03DA002350DC /* HOTInflectorTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HOTInflectorTests.h; sourceTree = "<group>"; };
 		E90B0E2F165E03DA002350DC /* HOTInflectorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HOTInflectorTests.m; sourceTree = "<group>"; };
+		E90B0E7F165E21B7002350DC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E90B0E80165E21B7002350DC /* libsqlite3.dylib in Frameworks */,
 				E90B0DFB165E01AF002350DC /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -84,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E90B0E82165E223E002350DC /* libsqlite3.dylib in Frameworks */,
 				E90B0E0A165E01AF002350DC /* SenTestingKit.framework in Frameworks */,
 				E90B0E0C165E01AF002350DC /* UIKit.framework in Frameworks */,
 				E90B0E0D165E01AF002350DC /* Foundation.framework in Frameworks */,
@@ -116,6 +121,7 @@
 		E90B0DF9165E01AF002350DC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E90B0E7F165E21B7002350DC /* libsqlite3.dylib */,
 				E90B0DFA165E01AF002350DC /* Foundation.framework */,
 				E90B0E09165E01AF002350DC /* SenTestingKit.framework */,
 				E90B0E0B165E01AF002350DC /* UIKit.framework */,
@@ -427,6 +433,7 @@
 				E90B0E1E165E01AF002350DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E90B0E1F165E01AF002350DC /* Build configuration list for PBXNativeTarget "HOTModelTests" */ = {
 			isa = XCConfigurationList;
@@ -435,6 +442,7 @@
 				E90B0E21165E01AF002350DC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
