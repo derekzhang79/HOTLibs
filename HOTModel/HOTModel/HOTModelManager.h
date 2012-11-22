@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <sqlite3.h>
 #import "HOTDatabase.h"
 #import "HOTModel.h"
 

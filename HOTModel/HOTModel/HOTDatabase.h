@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <sqlite3.h>
 
 @interface HOTDatabase : NSObject {
     sqlite3 *_database;
