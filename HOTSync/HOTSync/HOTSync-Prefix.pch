@@ -7,4 +7,5 @@
     #import <sqlite3.h>
     #import <HOTModel.h>
     #import <HOTModelManager.h>
+    #import "utils.h"
 #endif

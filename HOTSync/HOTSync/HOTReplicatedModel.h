@@ -8,7 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "HOTSync.h"
-#import "utils.h"
 
 @class HOTSync;
 

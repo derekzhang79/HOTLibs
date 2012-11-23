@@ -7,14 +7,28 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "utils.h"
 #import "RemoteCall.h"
 #import "Change.h"
 
+
+extern NSString *const HOTSyncTransactionIdDidChangeNotification;
+
 @interface HOTSync : NSObject {
+    /**
+     * Variables that describe the upstream api
+     */
     NSString *_baseURL;
-    NSString *_deviceType;
+    /**
+     * Variables that describe the api 
+     */
     NSString *_deviceId;
+    NSString *_deviceModel;
+    NSString *_deviceName;
+    NSString *_deviceSystemName;
+    NSString *_deviceSystemVersion;
+    /**
+     * Other shit
+     */
     NSString *_apiVersion;
     NSString *_datasource; // The datasource you are syncing
     int _transactionId; // Defines how far into the transaction log we are
@@ -26,14 +40,18 @@
 }
 
 @property (strong) NSString *baseURL;
-@property (strong) NSString *deviceType;
-@property (strong) NSString *deviceId;
 @property (assign) int transactionId;
+
+-(id)initWithModelManager:(HOTModelManager *)modelMgr andDataSource:(NSString *)datasource andBaseURL:(NSString *)baseUrl;
 
 @end
 
-
 @protocol HOTSyncDelegate <NSObject>
 @required
-- (void) processSuccessful: (BOOL)success;
+- (void)didGetUnauthorizedError;
+@optional
+- (void)fullSyncDateDidUpdate:(NSDate *)date;
+- (void)transactionIdDidChangeTo:(NSNumber *)transactionId;
+- (void)pendingUpstreamTransactionsDidChangeTo:(NSNumber *)pendingTransactions;
+
 @end

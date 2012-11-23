@@ -10,15 +10,23 @@
 
 @implementation HOTSync
 
--(id)initWithModelManager:(HOTModelManager *)modelMgr andDataSource:(NSString *)datasource andBaseURL:(NSString *)baseUrl andDeviceType:(NSString *)deviceType andDeviceId:(NSString *)deviceId{
+-(id)initWithModelManager:(HOTModelManager *)modelMgr andDataSource:(NSString *)datasource andBaseURL:(NSString *)baseUrl{
     self = [super init];
     if(self){
         _modelManager = modelMgr;
-        _datasource = datasource;
+
         _baseURL = baseUrl;
-        _deviceId = deviceId;
-        _deviceType = deviceType;
+        
+        _deviceId = [self detectOrGenerateDeviceID];
+        _deviceModel = [[UIDevice currentDevice] model];
+        _deviceName = [[UIDevice currentDevice] name];
+        _deviceSystemName = [[UIDevice currentDevice] systemName];
+        _deviceSystemVersion = [[UIDevice currentDevice] systemVersion];
+        
         _apiVersion = @"2.0";
+        
+        _datasource = datasource;
+        
         // Add the local datasource associated with this datasource
         NSString *path = [NSString stringWithFormat:@"%@.local", [[_modelManager getDatabaseWithDatasource:datasource] path]];
         NSDictionary *config = [[NSDictionary alloc] initWithObjectsAndKeys:
@@ -30,6 +38,23 @@
         [_modelManager registerModel:[[Change alloc] initWithModelManager:modelMgr andSyncClinet:self]];
     }
     return self;
+}
+
+# pragma mark Device Methods
+
+-(NSString *)detectOrGenerateDeviceID{
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    NSString *deviceId = [prefs valueForKey:@"HOTSync.DeviceId"];
+    if(!deviceId || [deviceId isEqualToString:@""]){
+        CFUUIDRef theUUID = CFUUIDCreate(kCFAllocatorDefault);
+        if (theUUID)
+        {
+            NSString *deviceId = (__bridge NSString *)CFUUIDCreateString(kCFAllocatorDefault, theUUID);
+            [prefs setValue:deviceId forKey:@"HOTSync.DeviceID"];
+            CFRelease(theUUID);
+        }
+    }
+    return deviceId;
 }
 
 # pragma mark Sync Date management
@@ -47,9 +72,12 @@
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:5];
-    [request setValue:_deviceId forHTTPHeaderField:@"X-HotSync-DeviceUUID"];
-    [request setValue:_deviceType forHTTPHeaderField:@"X-HOTSync-Type"];
-    [request setValue:_apiVersion forHTTPHeaderField:@"X-HOTSync-Version"];
+    [request setValue:_deviceId forHTTPHeaderField:@"X-HotSync-DeviceId"];
+    [request setValue:_deviceModel forHTTPHeaderField:@"X-HOTSync-DeviceModel"];
+    [request setValue:_deviceName forHTTPHeaderField:@"X-HOTSync-DeviceName"];
+    [request setValue:_deviceSystemName forHTTPHeaderField:@"X-HOTSync-DeviceSystemName"];
+    [request setValue:_deviceSystemVersion forHTTPHeaderField:@"X-HOTSync-DeviceSystemVersion"];
+    [request setValue:_apiVersion forHTTPHeaderField:@"X-HOTSync-ApiVersion"];
     return request;
 }
 
