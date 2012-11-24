@@ -402,6 +402,9 @@
     if([type isEqualToString:@"all"]){
         return cResults;
     } else if([type isEqualToString:@"first"]){
+        if([cResults count] == 0){
+            return nil;
+        }
         return [cResults objectAtIndex:0];
     }
     return nil;
@@ -526,7 +529,7 @@
         sql = [self buildUpdateStatementWithData:data];
     }
     [self dataSourceExecuteWithSql:sql];
-    return false;
+    return true;
 }
 
 -(BOOL)deleteWithQueryData:(NSDictionary *)queryData{

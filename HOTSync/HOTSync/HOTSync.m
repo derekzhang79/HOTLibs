@@ -274,27 +274,32 @@
     NSString *modelName = [transaction objectForKey:@"model_name"];
     NSString *action = [transaction objectForKey:@"action"];
     HOTModel *model = [_modelManager modelWithName:modelName];
-    if([action isEqualToString:@"D"]){
-        // delete the record
-        // In this case data should hold the primary keys {ModelName:{PK1:V1, PK2:V2}}
-        NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
-        [data setObject:[transaction objectForKey:@"primary_key"]
-                 forKey:[NSString stringWithFormat:@"%@", [[model primaryKeys] objectAtIndex:0]]];
-        NSDictionary *params = [[NSDictionary alloc ] initWithObjectsAndKeys:data, @"conditions", nil];
-        if([model deleteWithQueryData:params]){
-            return true;
+    // If the model is valid try to set the data
+    if(model != nil){
+        if([action isEqualToString:@"D"]){
+            // delete the record
+            // In this case data should hold the primary keys {ModelName:{PK1:V1, PK2:V2}}
+            NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
+            [data setObject:[transaction objectForKey:@"primary_key"]
+                     forKey:[NSString stringWithFormat:@"%@", [[model primaryKeys] objectAtIndex:0]]];
+            NSDictionary *params = [[NSDictionary alloc ] initWithObjectsAndKeys:data, @"conditions", nil];
+            if([model deleteWithQueryData:params]){
+                return true;
+            }
+        } else if ([action isEqualToString:@"I"] || [action isEqualToString:@"U"]){
+            
+            if ([action isEqualToString:@"I"]){
+                // We are inserting, so flag the model for an insert
+                [model create];
+            }
+            NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
+            [data setObject:[transaction objectForKey:@"data"] forKey:modelName];
+            // save the data
+            bool ret = [model saveWithData:data];
+            if(ret){
+                return true;
+            }
         }
-        return false;
-    }
-    if ([action isEqualToString:@"I"]){
-        // We are inserting, so flag the model for an insert
-        [model create];
-    }
-    NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
-    [data setObject:[transaction objectForKey:@"data"] forKey:modelName];
-    // save the data
-    if([model saveWithData:data]){
-        return true;
     }
     return false;
 }

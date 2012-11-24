@@ -16,6 +16,7 @@
 -(id)initWithConfig:(NSDictionary *)config{
     self = [super init];
     if(self){
+        _models = [[NSMutableDictionary alloc] init];
         _datasources = [[NSMutableDictionary alloc] init];
         for (NSString *dataSourceName in [config allKeys]){
             [self addDatasourceWithName:dataSourceName andConfig:[config objectForKey:dataSourceName]];

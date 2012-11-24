@@ -38,9 +38,11 @@
 
 @property (strong) NSString *baseURL;
 @property (strong) NSString *deviceId;
+@property (strong) HOTModelManager *modelManager;
 
 -(id)initWithModelManager:(HOTModelManager *)modelMgr andDataSource:(NSString *)datasource andBaseURL:(NSString *)baseUrl;
 -(NSMutableURLRequest *)getApiRequestWithUrl:(NSString *)url;
+-(BOOL)syncTransaction:(NSDictionary *)transaction;
 
 @end
 

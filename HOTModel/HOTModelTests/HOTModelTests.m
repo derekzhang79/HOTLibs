@@ -218,7 +218,6 @@
                           nil];
     NSString *sql = [model buildUpdateStatementWithData:data];
     STAssertTrue([sql isEqualToString:@"UPDATE test SET col2='data2',col4=35 WHERE col1=2"], @"Verifying insert SQL generation");
-    
 }
 
 # pragma mark Delete Statement Consruction
