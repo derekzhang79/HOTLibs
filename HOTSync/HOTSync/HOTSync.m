@@ -10,6 +10,9 @@
 
 @implementation HOTSync
 
+-(int)transactionId{
+    return _transactionId;
+}
 -(void)setTransactionId:(int)transactionId{
     [[NSNotificationCenter defaultCenter] postNotificationName:@"HOTSyncTransactionIdDidChangeNotification" object:self];
 }
@@ -268,12 +271,18 @@
 }
 
 /**
- *
+ * Sync an individual transaction downstream.
  */
 -(BOOL)syncTransaction:(NSDictionary *)transaction{
     NSString *modelName = [transaction objectForKey:@"model_name"];
     NSString *action = [transaction objectForKey:@"action"];
     HOTModel *model = [_modelManager modelWithName:modelName];
+    if([model isKindOfClass:[HOTReplicatedModel class]]){
+        model = [(HOTReplicatedModel *)model HOTModel];
+    } else {
+        // This is not a model that should be syncing
+        model = nil;
+    }
     // If the model is valid try to set the data
     if(model != nil){
         if([action isEqualToString:@"D"]){

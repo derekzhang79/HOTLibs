@@ -18,5 +18,6 @@
 -(id)initWithModelManager:(HOTModelManager *)modelMgr andSyncClinet:(HOTSync *)syncClient;
 -(BOOL)saveLocalWithData:(NSDictionary *)data;
 -(BOOL)deleteLocalWithQueryData:(NSDictionary *)queryData;
+-(HOTModel *)HOTModel;
 
 @end

@@ -30,6 +30,7 @@
 		E90B0E90165EEAFA002350DC /* HOTReplicatedModel.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E90B0E6B165E0686002350DC /* HOTReplicatedModel.h */; };
 		E90B0E9616603864002350DC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90B0E9516603864002350DC /* UIKit.framework */; };
 		E90B0E97166038AE002350DC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90B0E9516603864002350DC /* UIKit.framework */; };
+		E90B0E9A166096E2002350DC /* HOTReplicatedModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E90B0E99166096E2002350DC /* HOTReplicatedModelTests.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +81,8 @@
 		E90B0E86165EDD41002350DC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		E90B0E8C165EE506002350DC /* libHOTModel.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libHOTModel.a; path = "../Build/Products/Release-iphoneos/libHOTModel.a"; sourceTree = "<group>"; };
 		E90B0E9516603864002350DC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		E90B0E98166096E2002350DC /* HOTReplicatedModelTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HOTReplicatedModelTests.h; sourceTree = "<group>"; };
+		E90B0E99166096E2002350DC /* HOTReplicatedModelTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HOTReplicatedModelTests.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +177,8 @@
 				E90B0E5C165E056A002350DC /* HOTSyncTests.h */,
 				E90B0E5D165E056A002350DC /* HOTSyncTests.m */,
 				E90B0E57165E056A002350DC /* Supporting Files */,
+				E90B0E98166096E2002350DC /* HOTReplicatedModelTests.h */,
+				E90B0E99166096E2002350DC /* HOTReplicatedModelTests.m */,
 			);
 			path = HOTSyncTests;
 			sourceTree = "<group>";
@@ -302,6 +307,7 @@
 				E90B0E6E165E0687002350DC /* HOTReplicatedModel.m in Sources */,
 				E90B0E72165E06A6002350DC /* RemoteCall.m in Sources */,
 				E90B0E76165E06CE002350DC /* Change.m in Sources */,
+				E90B0E9A166096E2002350DC /* HOTReplicatedModelTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

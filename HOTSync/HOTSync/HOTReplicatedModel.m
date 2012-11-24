@@ -176,4 +176,14 @@
     return YES;
 }
 
+-(HOTModel *)HOTModel{
+    HOTModel *model = [[HOTModel alloc] initWithModelManager:_modelManager];
+    [model setName:_name];
+    [model setAlias:_alias];
+    [model setPrimaryKeys:_primaryKeys];
+    [model setUseDbConfig:_useDbConfig];
+    [model setTable:_table];
+    return model;
+}
+
 @end

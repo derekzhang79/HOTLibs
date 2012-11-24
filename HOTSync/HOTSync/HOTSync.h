@@ -41,7 +41,9 @@
 @property (strong) HOTModelManager *modelManager;
 
 -(id)initWithModelManager:(HOTModelManager *)modelMgr andDataSource:(NSString *)datasource andBaseURL:(NSString *)baseUrl;
+-(int)transactionId;
 -(NSMutableURLRequest *)getApiRequestWithUrl:(NSString *)url;
+-(void)syncTransactions:(NSArray *)transactions;
 -(BOOL)syncTransaction:(NSDictionary *)transaction;
 
 @end
