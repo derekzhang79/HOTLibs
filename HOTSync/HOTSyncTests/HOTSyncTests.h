@@ -8,6 +8,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 #import <OCMock/OCMock.h>
+#import "HOTSync.h"
 
 @interface HOTSyncTests : SenTestCase
 

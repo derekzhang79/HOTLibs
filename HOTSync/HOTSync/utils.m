@@ -51,3 +51,24 @@
 }
 
 @end
+
+#pragma mark UIDevice
+
+@implementation UIDevice (Identifier)
+
+-(NSString *)identifier{
+    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
+    NSString *deviceId = [prefs valueForKey:@"UIDevice.identifier"];
+    if(!deviceId || [deviceId isEqualToString:@""]){
+        CFUUIDRef theUUID = CFUUIDCreate(kCFAllocatorDefault);
+        if (theUUID)
+        {
+            deviceId = (__bridge NSString *)CFUUIDCreateString(kCFAllocatorDefault, theUUID);
+            [prefs setValue:deviceId forKey:@"UIDevice.identifier"];
+            CFRelease(theUUID);
+        }
+    }
+    return deviceId;
+}
+
+@end

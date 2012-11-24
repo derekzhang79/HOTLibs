@@ -10,6 +10,10 @@
 
 @implementation HOTSync
 
+-(void)setTransactionId:(int)transactionId{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"HOTSyncTransactionIdDidChangeNotification" object:self];
+}
+
 -(id)initWithModelManager:(HOTModelManager *)modelMgr andDataSource:(NSString *)datasource andBaseURL:(NSString *)baseUrl{
     self = [super init];
     if(self){
@@ -17,7 +21,7 @@
 
         _baseURL = baseUrl;
         
-        _deviceId = [self detectOrGenerateDeviceID];
+        _deviceId = [[UIDevice currentDevice] identifier];
         _deviceModel = [[UIDevice currentDevice] model];
         _deviceName = [[UIDevice currentDevice] name];
         _deviceSystemName = [[UIDevice currentDevice] systemName];
@@ -40,23 +44,6 @@
     return self;
 }
 
-# pragma mark Device Methods
-
--(NSString *)detectOrGenerateDeviceID{
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    NSString *deviceId = [prefs valueForKey:@"HOTSync.DeviceId"];
-    if(!deviceId || [deviceId isEqualToString:@""]){
-        CFUUIDRef theUUID = CFUUIDCreate(kCFAllocatorDefault);
-        if (theUUID)
-        {
-            NSString *deviceId = (__bridge NSString *)CFUUIDCreateString(kCFAllocatorDefault, theUUID);
-            [prefs setValue:deviceId forKey:@"HOTSync.DeviceID"];
-            CFRelease(theUUID);
-        }
-    }
-    return deviceId;
-}
-
 # pragma mark Sync Date management
 
 -(void)setFullSyncDateUpstream:(NSDate *)date{
@@ -69,7 +56,9 @@
 
 # pragma mark API Request Building
 -(NSMutableURLRequest *)getApiRequestWithUrl:(NSString *)url{
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:url]
+    
+    NSString *fullUrl = [[NSString alloc] initWithFormat:@"%@%@", _baseURL, url];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:fullUrl]
                                                            cachePolicy:NSURLRequestUseProtocolCachePolicy
                                                        timeoutInterval:5];
     [request setValue:_deviceId forHTTPHeaderField:@"X-HotSync-DeviceId"];
@@ -123,6 +112,7 @@
     // Replace the old database with the new one.
     [database updateDatabase:[NSString stringWithFormat:@"%@.tmp", [database path]]];
 }
+
 /*
  * Syncs data down until things are up to date
  */
@@ -130,10 +120,7 @@
     while(1){
         @try {
             NSLog(@"ONZRAReplicationClient: syncing from the transactionid %d", _transactionId);
-            NSString *fullUrl = [[NSString alloc] initWithFormat:@"%@/api/sync/sync/%d.json", _baseURL, _transactionId];
-            
-            NSLog(@"HTTP REQUEST: %@", fullUrl);
-            NSURLRequest *request = [self getApiRequestWithUrl:fullUrl];
+            NSURLRequest *request = [self getApiRequestWithUrl:[[NSString alloc] initWithFormat:@"/api/sync/sync/%d.json", _transactionId]];
             NSError *error;
             NSURLResponse *response;
             NSData *returndata = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
@@ -195,7 +182,7 @@
                 // Call API server
                 NSLog(@"Got Result: %@", [NSJSONSerialization stringWithJSONObject:result options:NSJSONWritingPrettyPrinted error:nil]);
                 // Call upstream api method
-                NSString *fullUrl = [[NSString alloc] initWithFormat:@"%@/api/%@.json", _baseURL, [[result objectForKey:@"RemoteCall"] objectForKey:@"method"]];
+                NSString *fullUrl = [[NSString alloc] initWithFormat:@"/api/%@.json", [[result objectForKey:@"RemoteCall"] objectForKey:@"method"]];
                 NSLog(@"HTTP REQUEST: %@", fullUrl);
                 NSMutableURLRequest *request = [self getApiRequestWithUrl:fullUrl];
                 [request setHTTPMethod:@"POST"];
@@ -240,7 +227,7 @@
     NSString *postString = [[data objectForKey:@"RemoteCall"] objectForKey:@"post_data"];
     NSDictionary *postData = [NSJSONSerialization JSONObjectWithData:[postString dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:nil];
     [mdata setValue:postData forKeyPath:@"RemoteCall.post_data"];
-    NSString *fullUrl = [[NSString alloc] initWithFormat:@"%@/api/sync/emailAlert.json", _baseURL];
+    NSString *fullUrl = @"/api/sync/emailAlert.json";
     NSMutableURLRequest *request = [self getApiRequestWithUrl:fullUrl];
     [request setHTTPMethod:@"POST"];
     [request setHTTPBody:[[NSJSONSerialization stringWithJSONObject:mdata options:kNilOptions error:nil] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -264,7 +251,8 @@
     for(NSDictionary *transaction in transactions){
         if([self syncTransaction:transaction]){
             NSNumber *trans = [transaction objectForKey:@"id"];
-            [self setTransactionId:[trans intValue]];
+            _transactionId = [trans intValue];
+            //[self setTransactionId:[trans intValue]];
         }
     }
 }

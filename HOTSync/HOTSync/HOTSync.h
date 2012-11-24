@@ -10,9 +10,6 @@
 #import "RemoteCall.h"
 #import "Change.h"
 
-
-extern NSString *const HOTSyncTransactionIdDidChangeNotification;
-
 @interface HOTSync : NSObject {
     /**
      * Variables that describe the upstream api
@@ -40,18 +37,10 @@ extern NSString *const HOTSyncTransactionIdDidChangeNotification;
 }
 
 @property (strong) NSString *baseURL;
-@property (assign) int transactionId;
+@property (strong) NSString *deviceId;
 
 -(id)initWithModelManager:(HOTModelManager *)modelMgr andDataSource:(NSString *)datasource andBaseURL:(NSString *)baseUrl;
+-(NSMutableURLRequest *)getApiRequestWithUrl:(NSString *)url;
 
 @end
 
-@protocol HOTSyncDelegate <NSObject>
-@required
-- (void)didGetUnauthorizedError;
-@optional
-- (void)fullSyncDateDidUpdate:(NSDate *)date;
-- (void)transactionIdDidChangeTo:(NSNumber *)transactionId;
-- (void)pendingUpstreamTransactionsDidChangeTo:(NSNumber *)pendingTransactions;
-
-@end

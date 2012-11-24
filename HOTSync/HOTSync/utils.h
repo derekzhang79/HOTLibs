@@ -14,6 +14,7 @@
 
 + (NSString *)stringWithJSONObject:(id)obj options:(NSJSONWritingOptions)opt error:(NSError **)error;
 + (id)objectWithJSONString:(NSString *)string;
+
 @end
 
 #pragma mark NSDictionary
@@ -21,5 +22,13 @@
 @interface NSDictionary (NSDictionaryMutableCopyDeep)
 
 - (NSMutableDictionary *) mutableCopyDeep;
+
+@end
+
+#pragma mark UIDevice
+
+@interface UIDevice (Identifier)
+
+-(NSString *)identifier;
 
 @end

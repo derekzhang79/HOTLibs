@@ -28,6 +28,8 @@
 		E90B0E8E165EE8E6002350DC /* RemoteCall.m in Sources */ = {isa = PBXBuildFile; fileRef = E90B0E70165E06A6002350DC /* RemoteCall.m */; };
 		E90B0E8F165EE8E6002350DC /* Change.m in Sources */ = {isa = PBXBuildFile; fileRef = E90B0E74165E06CE002350DC /* Change.m */; };
 		E90B0E90165EEAFA002350DC /* HOTReplicatedModel.h in CopyFiles */ = {isa = PBXBuildFile; fileRef = E90B0E6B165E0686002350DC /* HOTReplicatedModel.h */; };
+		E90B0E9616603864002350DC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90B0E9516603864002350DC /* UIKit.framework */; };
+		E90B0E97166038AE002350DC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E90B0E9516603864002350DC /* UIKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +79,7 @@
 		E90B0E84165EDAC3002350DC /* libOCMock.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libOCMock.a; path = ../Externals/libOCMock.a; sourceTree = "<group>"; };
 		E90B0E86165EDD41002350DC /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		E90B0E8C165EE506002350DC /* libHOTModel.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libHOTModel.a; path = "../Build/Products/Release-iphoneos/libHOTModel.a"; sourceTree = "<group>"; };
+		E90B0E9516603864002350DC /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E90B0E9616603864002350DC /* UIKit.framework in Frameworks */,
 				E90B0E8D165EE507002350DC /* libHOTModel.a in Frameworks */,
 				E90B0E87165EDD41002350DC /* libsqlite3.dylib in Frameworks */,
 				E90B0E40165E056A002350DC /* Foundation.framework in Frameworks */,
@@ -96,6 +100,7 @@
 			files = (
 				E90B0E88165EDD4B002350DC /* libsqlite3.dylib in Frameworks */,
 				E90B0E85165EDAC3002350DC /* libOCMock.a in Frameworks */,
+				E90B0E97166038AE002350DC /* UIKit.framework in Frameworks */,
 				E90B0E4F165E056A002350DC /* SenTestingKit.framework in Frameworks */,
 				E90B0E52165E056A002350DC /* Foundation.framework in Frameworks */,
 				E90B0E55165E056A002350DC /* libHOTSync.a in Frameworks */,
@@ -130,6 +135,7 @@
 				E90B0E8C165EE506002350DC /* libHOTModel.a */,
 				E90B0E86165EDD41002350DC /* libsqlite3.dylib */,
 				E90B0E84165EDAC3002350DC /* libOCMock.a */,
+				E90B0E9516603864002350DC /* UIKit.framework */,
 				E90B0E3F165E056A002350DC /* Foundation.framework */,
 				E90B0E4E165E056A002350DC /* SenTestingKit.framework */,
 			);
@@ -346,6 +352,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -366,6 +373,7 @@
 				HEADER_SEARCH_PATHS = "${SRCROOT}/../HOTModel/HOTModel";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
