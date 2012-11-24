@@ -57,7 +57,6 @@
                         NSString *keyPath = [NSString stringWithFormat:@"%@.%@", _name, key];
                         // TODO: We probably want to compare instead of just overriding the value
                         [result setValue:[changeData valueForKeyPath:keyPath] forKeyPath:key];
-                        NSLog(@"Setting a value %@ for key path %@", [changeData valueForKeyPath:keyPath], keyPath);
                         modifiedRecord = true;
                     }
                 }
@@ -97,7 +96,6 @@
     //NSMutableDictionary *mutableChangeData = [data mutableCopyDeep];
     for(NSString *key in _primaryKeys){
         if([[data objectForKey:_name] objectForKey:key] == nil){
-            NSLog(@"%@: SaveLocal does not have required primary key data", _name);
             return NO;
         }
     }
@@ -127,7 +125,6 @@
  * Save the changes wo we can combine the results on the find.
  */
 -(BOOL)saveChangesWithData:(NSDictionary *)data andRemoteCallId:(NSNumber *)remoteCallId{
-    NSLog(@"%@: Saving local data", _name);
     NSMutableDictionary *c = [[NSMutableDictionary alloc] init];
     [c setValue:[remoteCallId stringValue] forKey:@"remote_call_id"];
     [c setValue:_name forKey:@"model_name"];
@@ -142,7 +139,6 @@
         int pkidx=1;
         for(NSString *key in _primaryKeys){
             if([[data objectForKey:_name] objectForKey:key] == nil){
-                NSLog(@"%@: SaveLocal does not have required primary key data", _name);
                 return NO;
             }
             [c setValue:[[data objectForKey:_name] objectForKey:key] forKey:[NSString stringWithFormat:@"primary_key%d", pkidx]];
