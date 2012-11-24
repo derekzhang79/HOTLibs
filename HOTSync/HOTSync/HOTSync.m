@@ -281,7 +281,8 @@
             // In this case data should hold the primary keys {ModelName:{PK1:V1, PK2:V2}}
             NSMutableDictionary *data = [[NSMutableDictionary alloc] init];
             [data setObject:[transaction objectForKey:@"primary_key"]
-                     forKey:[NSString stringWithFormat:@"%@", [[model primaryKeys] objectAtIndex:0]]];
+                     forKey:[NSString stringWithFormat:@"%@.%@", [model name], [[model primaryKeys] objectAtIndex:0]]];
+            
             NSDictionary *params = [[NSDictionary alloc ] initWithObjectsAndKeys:data, @"conditions", nil];
             if([model deleteWithQueryData:params]){
                 return true;

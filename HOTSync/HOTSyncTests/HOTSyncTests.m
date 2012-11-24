@@ -66,7 +66,9 @@
     STAssertTrue([[[request URL] absoluteString] isEqualToString:@"http://localhost/test/URL"], @"Verifyig URL (%@) is corect", [[request URL] absoluteString]);
 }
 
--(void)testSyncTransaction{
+#pragma mark Test Syncing Transactions
+
+-(void)testSyncTransactionInsert{
     HOTSync *sync = [self getHotSync];
     // Make sure the data is not in the database yet:
     
@@ -96,6 +98,69 @@
     STAssertTrue(([[result valueForKeyPath:@"Test.col4"] intValue] == 4), @"Checking content of column 4");
     return;
 }
+
+-(void)testSyncTransactionUpdate{
+    HOTSync *sync = [self getHotSync];
+    // Make sure the data is not in the database yet:
+    
+    HOTModel *model = [[sync modelManager] modelWithName:@"Test"];
+    NSDictionary *params = [[NSDictionary alloc] initWithObjectsAndKeys:
+                            [[NSDictionary alloc] initWithObjectsAndKeys:
+                             @"1", @"Test.col1",
+                             nil], @"conditions",
+                            nil];
+    NSDictionary *result = [model findWithType:@"first" andQuery:params];
+    STAssertNotNil(result, @"Verifying the record is in the database");
+    STAssertTrue(([[result valueForKeyPath:@"Test.col4"] intValue] == 42), @"Checking content of column 4");
+    // Add the record to the database
+    NSDictionary *data = [[NSDictionary alloc] initWithObjectsAndKeys:
+                          @"Test", @"model_name",
+                          @"U", @"action",
+                          @"1", @"primary_key",
+                          [[NSDictionary alloc] initWithObjectsAndKeys:
+                           @"1", @"col1",
+                           @"4", @"col4",
+                           nil], @"data",
+                          nil];
+    bool ret = [sync syncTransaction:data];
+    STAssertTrue(ret, @"Asserting transaction was synced properly");
+    // Find the newly inserted record
+    result = [model findWithType:@"first" andQuery:params];
+    STAssertTrue(([[result valueForKeyPath:@"Test.col1"] intValue] == 1), @"Checking content of column 1");
+    STAssertTrue(([[result valueForKeyPath:@"Test.col4"] intValue] == 4), @"Checking content of column 4");
+    return;
+}
+
+-(void)testSyncTransactionDelete{
+    HOTSync *sync = [self getHotSync];
+    // Make sure the data is not in the database yet:
+    
+    HOTModel *model = [[sync modelManager] modelWithName:@"Test"];
+    NSDictionary *params = [[NSDictionary alloc] initWithObjectsAndKeys:
+                            [[NSDictionary alloc] initWithObjectsAndKeys:
+                             @"1", @"Test.col1",
+                             nil], @"conditions",
+                            nil];
+    NSDictionary *result = [model findWithType:@"first" andQuery:params];
+    STAssertNotNil(result, @"Verifying the record is in the database");
+    STAssertTrue(([[result valueForKeyPath:@"Test.col4"] intValue] == 42), @"Checking content of column 4");
+    // Add the record to the database
+    NSDictionary *data = [[NSDictionary alloc] initWithObjectsAndKeys:
+                          @"Test", @"model_name",
+                          @"D", @"action",
+                          @"1", @"primary_key",
+                          [[NSDictionary alloc] initWithObjectsAndKeys:
+                           @"1", @"col1",
+                           nil], @"data",
+                          nil];
+    bool ret = [sync syncTransaction:data];
+    STAssertTrue(ret, @"Asserting transaction was synced properly");
+    // Find the newly inserted record
+    result = [model findWithType:@"first" andQuery:params];
+    STAssertNil(result, @"Verifying the record is not in the database");
+    return;
+}
+
 -(void)testSyncDownstream{
     
 }
