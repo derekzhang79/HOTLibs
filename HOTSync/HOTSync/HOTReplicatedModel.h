@@ -15,7 +15,9 @@
     HOTSync *_syncClient;
 }
 
--(id)initWithModelManager:(HOTModelManager *)modelMgr andSyncClinet:(HOTSync *)syncClient;
+@property HOTSync *syncClient;
+
+-(NSArray *)findLocalChanges;
 -(BOOL)saveLocalWithData:(NSDictionary *)data;
 -(BOOL)deleteLocalWithQueryData:(NSDictionary *)queryData;
 -(HOTModel *)HOTModel;

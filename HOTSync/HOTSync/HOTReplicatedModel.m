@@ -13,17 +13,6 @@
 
 @implementation HOTReplicatedModel
 
-/**
- * Initiate the model with the syncing object
- */
--(id)initWithModelManager:(HOTModelManager *)modelMgr andSyncClinet:(HOTSync *)syncClient{
-    self = [super initWithModelManager:modelMgr];
-    if(self){
-        // Initialization code here.
-        _syncClient = syncClient;
-    }
-    return self;
-}
 
 # pragma mark Data find methods
 
@@ -43,7 +32,6 @@
                               nil], @"fields",
                              nil];
     NSArray *localChanges = [[_modelManager modelWithName:@"Change"] findWithType:@"all" andQuery:lparams];
-    NSLog(@"Changes Found: %@", [NSJSONSerialization stringWithJSONObject:localChanges options:kNilOptions error:nil]);
     return localChanges;
 }
 
@@ -94,7 +82,7 @@
 }
 
 -(NSArray *)dataSourceReadWithQueryData:(NSDictionary *)queryData{
-    NSArray *results = [self dataSourceReadWithQueryData:queryData];
+    NSArray *results = [super dataSourceReadWithQueryData:queryData];
     return [self applyLocalChangesToResultSet:[results mutableCopy]];
 }
 

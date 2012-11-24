@@ -50,6 +50,7 @@
 -(void)createTableSchema;
 
 -(NSArray *)dataSourceExecuteWithSql:(NSString *)sql;
+-(NSArray *)dataSourceReadWithQueryData:(NSDictionary *)queryData;
 -(id)findWithType:(NSString *)type andQuery:(NSDictionary *)query;
 -(NSDictionary *)schema;
 -(NSString *)buildStatementJoinsWithQueryData:(NSArray *)data;
