@@ -45,8 +45,10 @@
         for(NSMutableDictionary *localChange in localChanges){
             // check to see if the change applies to the result
             if([[localChange valueForKeyPath:@"Change.action"] isEqualToString:@"u"]){
-                NSString *key = [NSString stringWithFormat:@"%@.%@", _name, [_primaryKeys objectAtIndex:0]];
-                if([[localChange valueForKeyPath:@"Change.primary_key1"] isEqualToString:[[result valueForKeyPath:key] stringValue]]){
+                //NSString *key = [NSString stringWithFormat:@"%@.%@", _name, [_primaryKeys objectAtIndex:0]];
+                // TODO: Support multiple key primary keys
+                
+                if([[localChange valueForKeyPath:@"Change.primary_key1"] isEqualToString:[[result valueForKeyPath:[_primaryKeys objectAtIndex:0]] stringValue]]){
                     // The primary keys lined up so this update applies to the object
                     
                     NSDictionary *changeData = (NSDictionary *)[NSJSONSerialization objectWithJSONString:[localChange valueForKeyPath:@"Change.data"]];
@@ -54,7 +56,7 @@
                         // Update the appropriate value
                         NSString *keyPath = [NSString stringWithFormat:@"%@.%@", _name, key];
                         // TODO: We probably want to compare instead of just overriding the value
-                        [result setValue:[changeData valueForKeyPath:keyPath] forKeyPath:keyPath];
+                        [result setValue:[changeData valueForKeyPath:keyPath] forKeyPath:key];
                         NSLog(@"Setting a value %@ for key path %@", [changeData valueForKeyPath:keyPath], keyPath);
                         modifiedRecord = true;
                     }
