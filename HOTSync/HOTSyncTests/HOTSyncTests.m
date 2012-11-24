@@ -48,4 +48,8 @@
     STAssertTrue([[[request URL] absoluteString] isEqualToString:@"http://localhost/test/URL"], @"Verifyig URL (%@) is corect", [[request URL] absoluteString]);
 }
 
+-(void)testSyncDownstream{
+    
+}
+
 @end

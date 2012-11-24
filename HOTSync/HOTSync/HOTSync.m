@@ -93,9 +93,16 @@
             break;
         }
         // Sync data downsteam as fast as possible until you are up to date.
-        [self syncDownstreamUpToDate];
-        // sleep for a small period to not slam the servers
-        [NSThread sleepForTimeInterval:30];
+        @try {
+            [self syncDownstreamUpToDate];
+        }
+        @catch (NSException *exception) {
+            NSLog(@"Trapped Exception: %@", [exception name]);
+        }
+        @finally {
+            // sleep for a small period to not slam the servers
+            [NSThread sleepForTimeInterval:30];
+        }
     }
 }
 
@@ -118,49 +125,52 @@
  */
 -(void)syncDownstreamUpToDate{
     while(1){
-        @try {
-            NSLog(@"ONZRAReplicationClient: syncing from the transactionid %d", _transactionId);
-            NSURLRequest *request = [self getApiRequestWithUrl:[[NSString alloc] initWithFormat:@"/api/sync/sync/%d.json", _transactionId]];
-            NSError *error;
-            NSURLResponse *response;
-            NSData *returndata = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-            if(returndata){
-                [self setFullSyncDateDownstream:[NSDate date]];
-                // if there was not an error getting the data.
-                NSString *returnString = [[NSString alloc] initWithData:returndata encoding:NSUTF8StringEncoding];
-                NSLog(@"Got Status Code: %d",[((NSHTTPURLResponse *)response) statusCode]);
-                if([((NSHTTPURLResponse *)response) statusCode] != 200){
-                    // This may be telling you to grab a snapshot
-                    NSDictionary *returnObject = [NSJSONSerialization JSONObjectWithData:[returnString dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:nil];
-                    if(returnObject && [returnObject isKindOfClass:[NSDictionary class]] && [[returnObject objectForKey:@"code"] intValue] == 1){
-                        // you are being told to grab a snapshot.
-                        [self downloadSnapshot:[returnObject objectForKey:@"data"]];
-                        continue;
-                    } else {
-                        NSLog(@"HTTP RESPONSE: %@",returnString);
-                        @throw [NSException exceptionWithName: @"ApiError"
-                                                       reason: @"An exception occurred while trying to sync data downstream"
-                                                     userInfo: nil];
-                    }
-                }
-                // Check to see if we need to download a snapshot
-                NSArray *returnObject = [NSJSONSerialization JSONObjectWithData:[returnString dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:nil];
-                // Sync transactions
-                if([returnObject count] != 0){
-                    [self syncTransactions:returnObject];
-                    // Continue will skip to the loop again without sleeping as there may be more updates
-                    continue;
-                }
-            }
-            // At this point we should be done processing and up to date
-            return;
-        }
-        @catch (NSException *exception) {
-            NSLog(@"Error %@ - %@", [exception name], [exception reason]);
-            // There may have been a connection issue. return and let the parent thread manage coming back to this operation.
+        int appliedTransactions = [self syncDownstream];
+        if(appliedTransactions == 0){
             return;
         }
     }
+}
+
+/**
+ * Attempt to sync datadownstream. Return the number of changes that were applied
+ */
+-(int)syncDownstream{
+    NSURLRequest *request = [self getApiRequestWithUrl:[[NSString alloc] initWithFormat:@"/api/sync/sync/%d.json", _transactionId]];
+    NSError *error;
+    NSURLResponse *response;
+    NSData *returndata = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    if(returndata){
+        [self setFullSyncDateDownstream:[NSDate date]];
+        // if there was not an error getting the data.
+        NSString *returnString = [[NSString alloc] initWithData:returndata encoding:NSUTF8StringEncoding];
+        if([((NSHTTPURLResponse *)response) statusCode] != 200){
+            // This may be telling you to grab a snapshot
+            NSDictionary *returnObject = [NSJSONSerialization JSONObjectWithData:[returnString dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:nil];
+            if(returnObject && [returnObject isKindOfClass:[NSDictionary class]] && [[returnObject objectForKey:@"code"] intValue] == 1){
+                // you are being told to grab a snapshot.
+                [self downloadSnapshot:[returnObject objectForKey:@"data"]];
+                // This should probably return the maxtransaction id
+                return 1;
+            }  else {
+                //NSLog(@"HTTP RESPONSE: %@",returnString);
+                @throw [NSException exceptionWithName: @"ApiError"
+                                               reason: @"An exception occurred while trying to sync data downstream"
+                                             userInfo: nil];
+            }
+        } else {
+            // Parse the return object and apply the changes
+            NSArray *returnObject = [NSJSONSerialization JSONObjectWithData:[returnString dataUsingEncoding:NSUTF8StringEncoding] options:kNilOptions error:nil];
+            // Sync transactions
+            if([returnObject count] != 0){
+                [self syncTransactions:returnObject];
+                // Continue will skip to the loop again without sleeping as there may be more updates
+                return [returnObject count];
+            }
+        }
+    }
+    // At this point we should be done processing and up to date
+    return 0;
 }
 
 #pragma mark Threaded upstream syncing
